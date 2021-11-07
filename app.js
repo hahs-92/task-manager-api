@@ -1,4 +1,6 @@
 const express = require('express')
+//CONFIG
+const config = require('./config/config')
 //DB
 // require('./db/connect')
 const connectDB = require('./db/connect')
@@ -19,7 +21,7 @@ app.use('/api/v1/tasks', routeTasks)
 
 const start = async () => {
     try {
-        await connectDB()
+        await connectDB(config.mongoUri)
 
         app.listen(PORT, console.log(`server is listening on port ${PORT}`))
     } catch (error) {
